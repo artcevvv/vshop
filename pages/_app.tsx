@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className="max-w-[1200px] mx-auto p-2 flex flex-col min-h-screen">
       <Navbar/>
-      <div className="flex-1 h-full">
+      <div className="flex-1 h-full py-5 flex">
         <Component {...pageProps} />
       </div>
       <Footer/>
