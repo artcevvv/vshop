@@ -39,7 +39,7 @@ export default function Footer() {
         <Link className="text-[#161F1E] text-[16px] font-medium" href={'/'}>artcevvv</Link>
       </div>
       <div className="flex w-full items-center gap-[10px] justify-end">
-        <Link className="text-[#161F1E] text-[16px] font-medium" href={'/'}>Войти</Link>
+        <Link className="text-[#161F1E] text-[16px] font-medium" href='/account/login'>Войти</Link>
         <Link className="text-white text-[16px] font-medium bg-[#ff7435] rounded-full px-[30px] py-4 " href={'/'}>Начать</Link>
       </div>
     </div>
