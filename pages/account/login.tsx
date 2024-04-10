@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   const {login} = useContext(AuthenticationContext)
 
-  const submitHandler = e => {
+  const submitHandler = (e: { preventDefault: () => void }) => {
   	e.preventDefault();
   	login({username, password1})
   }

@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <AuthenticationProvider>
     <div className="max-w-[1200px] mx-auto p-2 flex flex-col min-h-screen">
       <Navbar/>
-      <div className="flex-1 h-full py-5 flex">
+      <div className="flex-1 h-full flex justify-center py-[50px]">
         <Component {...pageProps} />
       </div>
       <Footer/>

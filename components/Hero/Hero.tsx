@@ -22,17 +22,14 @@ export default function Hero() {
                         </div>
                     </div>
                     <div className="flex flex-col h-[100%] gap-5 w-full">
-                        <Image width={500} height={400} src={'/hero.png'} className='w-full h-[328px] rounded-[30px]'></Image>
+                        <Image width={500} height={400} src={'/hero.png'} className='w-full h-[328px] rounded-[30px]' alt="hero-image"></Image>
                     </div>
                     <div className="flex flex-col h-[100%] gap-5 w-[30%]">
-                        <Image width={500} height={400} src={'/hero.png'} className='w-full h-[328px]  rounded-[30px] object-cover'></Image>
+                        <Image width={500} height={400} src={'/hero.png'} className='w-full h-[328px]  rounded-[30px] object-cover' alt="hero-small-image"></Image>
                     </div>
                 </div>
                 <div className="w-full h-[100px]">
                     <div className="h-[90px] w-full rounded-full px-[20px] flex items-center justify-center bg-[#fafafa] border-2 border-[#dddddd]">
-
-
-
                         <div className="flex items-center gap-[10px]">
                             <Link className="text-[#161F1E] text-[16px] font-medium" href='/account/login'>Войти</Link>
                             <Link className="text-white text-[16px] font-medium bg-[#ff7435] rounded-full px-[30px] py-4 " href={'/'}>Начать</Link>
