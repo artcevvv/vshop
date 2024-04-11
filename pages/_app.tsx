@@ -5,6 +5,7 @@ import Footer from "@/components/footer/Footer";
 import { AuthenticationProvider } from "@/context/AuthentificationContext";
 import Head from "next/head";
 import { ApiProvider } from "@/context/ApiContext";
+// import {Toaster} from ""
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -84,6 +85,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/public/icons/ms-icon-144x144.png" /> */}
       {/* </Head> */}
+      {/* <div><Toaster/></div> */}
       <AuthenticationProvider>
         <ApiProvider>
           <div className="max-w-[1200px] mx-auto p-2 flex flex-col min-h-screen">

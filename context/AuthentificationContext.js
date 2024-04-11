@@ -34,7 +34,7 @@ export const AuthenticationProvider = ({ children }) => {
 
     try {
       const { data: accessResponse } = await axios.post(
-        `http://127.0.0.1:8000/api/auth/login/`,
+        `${process.env.API_URL}/api/auth/login/`,
         body,
         config
       );
@@ -82,7 +82,7 @@ export const AuthenticationProvider = ({ children }) => {
 
     try {
       axios.post(
-        `http://127.0.0.1:8000/api/auth/register/`,
+        `${process.env.API_URL}/api/auth/register/`,
         body,
         config
       );
@@ -107,7 +107,7 @@ export const AuthenticationProvider = ({ children }) => {
   const logout = async () => {
     try {
       // remove the http only cookie
-      await axios.post(`http://127.0.0.1:8000/api/api/logout`);
+      await axios.post(`${process.env.API_URL}/api/auth/logout`);
 
       // remove the access token and the user from the state
       setUser(null);
