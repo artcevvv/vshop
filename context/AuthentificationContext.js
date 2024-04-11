@@ -8,7 +8,7 @@ const AuthenticationContext = createContext();
 export const AuthenticationProvider = ({ children }) => {
   useEffect(() => {
     const user = localStorage.getItem('user')
-    const accessToken = localStorage.getItem('accessToken').replace(/"/g, "").replace(/(\r\n|\n|\r)/gm, "");
+    const accessToken = localStorage.getItem('accessToken')?.replace(/"/g, "").replace(/(\r\n|\n|\r)/gm, "");
     setUser(JSON.parse(user))
     setAccessToken(accessToken)
     console.log(accessToken)
@@ -104,29 +104,9 @@ export const AuthenticationProvider = ({ children }) => {
     }
   };
 
-  const logout = async () => {
-    try {
-      // remove the http only cookie
-      await axios.post(`${process.env.API_URL}/api/auth/logout`);
-
-      // remove the access token and the user from the state
-      setUser(null);
-      setAccessToken(null);
-    } catch (error) {
-      if (error.response & error.response.data) {
-        setError(error.response.data.message);
-        return;
-      } else if (error.request) {
-        setError("Something went wrong");
-        return;
-      } else {
-        setError("Something went wrong");
-        return;
-      }
-      console.error("Error", error.message);
-      setError("Something went wrong");
-      return;
-    }
+  const logout = () => {
+    localStorage.setItem('user', '')
+    localStorage.setItem('accessToken', '');
   };
 
   return (
