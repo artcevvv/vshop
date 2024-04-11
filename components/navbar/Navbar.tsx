@@ -27,7 +27,7 @@ export default function Navbar() {
       </div>
       { user? (
         <div>
-         <p>LOGGED IN aas user `${user.username}`</p>
+         <p>LOGGED IN aas user {user.username}</p>
         <div className="flex items-center gap-[10px]">
         <Link className="text-[#161F1E] text-[16px] font-medium" href='/account/login'>Войти</Link>
         <Link className="text-white text-[16px] font-medium bg-[#ff7435] rounded-full px-[30px] py-4 " href={'/'}>Начать</Link>

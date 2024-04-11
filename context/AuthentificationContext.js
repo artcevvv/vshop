@@ -6,17 +6,17 @@ export const useAuth = () => useContext(AuthenticationContext)
 const AuthenticationContext = createContext();
 
 export const AuthenticationProvider = ({ children }) => {
-	useEffect(()=>{
-		use(localStorage.get('user'))
-
-	})
+  useEffect(() => {
+    const user = localStorage.getItem('user')
+    const accessToken = localStorage.getItem('accessToken')
+    setUser(JSON.parse(user))
+    setAccessToken(accessToken)
+  }, [])
   const [user, setUser] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
   const [error, setError] = useState(null);
 
   const router = useRouter();
-
-  // Login User
   const login = async ({ username, password1 }) => {
     const config = {
       headers: {
@@ -45,21 +45,21 @@ export const AuthenticationProvider = ({ children }) => {
       if (accessResponse && accessResponse.access) {
         setAccessToken(accessResponse.access);
       }
-	  localStorage.setItem(user)
+      localStorage.setItem('user', JSON.stringify(accessResponse.user))
+      localStorage.setItem('accessToken', JSON.stringify(accessResponse.access))
       router.push("/");
     } catch (error) {
-      if (error.response & error.response.data) {
-        setError(error.response.data.message);
+      if (error.response) {
+        console.error(error);
         return;
       } else if (error.request) {
-        setError("Something went wrong");
+        console.error(error.request);
         return;
       } else {
-        setError("Something went wrong");
+        console.error(error);
         return;
       }
-      console.error("Error", error.message);
-      setError("Something went wrong");
+      console.error(error);
       return;
     }
   };
@@ -80,17 +80,17 @@ export const AuthenticationProvider = ({ children }) => {
     };
 
     try {
-		axios.post(
+      axios.post(
         "http://crvik.c-m.tech:4444/api/auth/register/",
         body,
         config
       );
     } catch (error) {
-      if (error.response & error.response.data) {
+      if (error.response && error.response.data) {
         setError(error.response.data.message);
         return;
       } else if (error.request) {
-		
+
         setError("Something went wrong");
         return;
       } else {

@@ -16,6 +16,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "context/AuthentificationContext.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "context/AuthentificationContext.js", "context/ApiContext.js"],
   "exclude": ["node_modules"]
 }

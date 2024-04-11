@@ -1,7 +1,7 @@
 import AuthenticationContext from '@/context/AuthentificationContext'
 import { useRouter } from 'next/router'
 import React, { useContext, useState } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -15,7 +15,7 @@ export default function LoginPage() {
   
   const router = useRouter()
 
-  const {login} = useContext(AuthenticationContext)
+  const {login, error} = useContext(AuthenticationContext)
 
   const submitHandler = (e: { preventDefault: () => void }) => {
   	e.preventDefault();
@@ -55,6 +55,7 @@ export default function LoginPage() {
           </div>
         </div>
       <Button type="submit" className="px-[16px] py-[8px] text-[16px] bg-[#FF7435] leading-[24px] font-medium">Войти</Button>
+      <p className='text-red'>{error ? typeof error == 'object'? error.map((i:any)=> (<p>{i}</p>)) : error: ''}</p>
       </form>
       <span className="text-[14px] text-[#00000048]">Впервые используете VSHOP? <Link href="/account/register" className="text-[#558FFF]">Зарегистрироваться</Link></span>
     </div>
