@@ -1,6 +1,8 @@
+import { AuthenticationProvider } from "@/context/AuthentificationContext"
 import Link from "next/link"
-
+import { useAuth } from "@/context/AuthentificationContext"
 export default function Navbar() {
+  const { user, accessToken, error, login, register, logout } = useAuth()
   return (
     <div className="h-[90px] w-full rounded-full px-[20px] flex items-center justify-between bg-[#fafafa] border-2 border-[#dddddd]">
       <Link href={'/'} className="flex gap-[5px] items-center">
@@ -23,10 +25,20 @@ export default function Navbar() {
         <Link className="text-[#161F1E] text-[16px] font-medium" href={'/'}>l0xa1</Link>
         <Link className="text-[#161F1E] text-[16px] font-medium" href={'/'}>artcevvv</Link>
       </div>
-      <div className="flex items-center gap-[10px]">
+      { user? (
+        <div>
+         <p>LOGGED IN aas user `${user.username}`</p>
+        <div className="flex items-center gap-[10px]">
+        <Link className="text-[#161F1E] text-[16px] font-medium" href='/account/login'>Войти</Link>
+        <Link className="text-white text-[16px] font-medium bg-[#ff7435] rounded-full px-[30px] py-4 " href={'/'}>Начать</Link>
+        </div>
+      </div>
+      ) : (
+        <div className="flex items-center gap-[10px]">
         <Link className="text-[#161F1E] text-[16px] font-medium" href='/account/login'>Войти</Link>
         <Link className="text-white text-[16px] font-medium bg-[#ff7435] rounded-full px-[30px] py-4 " href={'/'}>Начать</Link>
       </div>
+      ) }
     </div>
   )
 }
