@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       {/* <Head> */}
-        {/* <meta name="viewport" content="width=device-width,initial-scale=1" />
+      {/* <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link
           rel="apple-touch-icon"
           sizes="57x57"
@@ -85,20 +85,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="msapplication-TileImage" content="/public/icons/ms-icon-144x144.png" /> */}
       {/* </Head> */}
       <AuthenticationProvider>
-<<<<<<< HEAD
         <ApiProvider>
           <div className="max-w-[1200px] mx-auto p-2 flex flex-col min-h-screen">
             <Navbar />
-            <div className="flex-1 h-full flex justify-center py-[50px]">
+            <div className="flex-1 h-full flex justify-center py-[50px] max-[764px]:py-[30px] max-[764px]:items-center">
               <Component {...pageProps} />
             </div>
             <Footer />
-=======
-        <div className="max-w-[1200px] mx-auto p-2 flex flex-col min-h-screen">
-          <Navbar />
-          <div className="flex-1 h-full flex justify-center py-[50px] max-[764px]:py-[30px] max-[764px]:items-center">
-            <Component {...pageProps} />
->>>>>>> 557cc7528d01d33037dd44339b1641aaebd2b9af
           </div>
         </ApiProvider>
       </AuthenticationProvider>
