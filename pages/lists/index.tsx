@@ -23,7 +23,7 @@ export default function FamilyCreation() {
   const createList = async (listData: any) => {
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/models/productlists/`, {
+      const response = await fetch(`http://crvik.c-m.tech:4444api/models/productlists/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
