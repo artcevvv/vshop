@@ -97,7 +97,7 @@ export default function Navbar() {
         <div className="flex items-center gap-[10px]">
           <Link
             className="text-[#161F1E] text-[16px] font-medium"
-            href="//login"
+            href="/account/login"
           >
             Войти
           </Link>
