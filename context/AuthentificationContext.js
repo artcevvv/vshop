@@ -9,9 +9,11 @@ export const AuthenticationProvider = ({ children }) => {
   useEffect(() => {
     const user = localStorage.getItem('user')
     const accessToken = localStorage.getItem('accessToken')?.replace(/"/g, "").replace(/(\r\n|\n|\r)/gm, "");
-    setUser(JSON.parse(user))
+    if (user & accessToken) {
+      setUser(JSON.parse(user))
     setAccessToken(accessToken)
     console.log(accessToken)
+  3}
   }, [])
   const [user, setUser] = useState(null);
   const [accessToken, setAccessToken] = useState(null);

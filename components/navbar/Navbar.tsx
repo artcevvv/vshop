@@ -1,8 +1,31 @@
 import { AuthenticationProvider } from "@/context/AuthentificationContext";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthentificationContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "../ui/button";
+import { List, LogOut, SquarePlus } from "lucide-react";
+import { Input } from "../ui/input";
+import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer";
+import { Label } from "../ui/label";
+import { useRouter } from "next/router";
+import { useState } from "react";
 export default function Navbar() {
   const { user, accessToken, error, login, register, logout } = useAuth();
+  const [count, setCount] = useState(0)
+  const router = useRouter()
+  const handleClick = () => {
+    logout()
+    router.push('/account/login')
+    setCount(2)
+  }
   return (
     <div className="h-[90px] w-full rounded-full px-[20px] flex items-center justify-between bg-[#fafafa] border-2 border-[#dddddd]">
       <Link href={"/"} className="flex gap-[5px] items-center">
@@ -80,11 +103,83 @@ export default function Navbar() {
       {user ? (
         <div>
           <div className="flex items-center gap-[10px]">
-            <span
-              className="text-[#161F1E] text-[16px] font-medium"
-            >
-              {user.username}
-            </span>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button className="text-[#161F1E] text-[16px] font-medium bg-transparent hover:bg-transparent">
+                  {user.username}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>{user.username}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/lists"
+                      className="text-black font-medium flex flex-row items-center gap-2 p-2"
+                    >
+                      <List className="stroke-black" /> Мои списки
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Drawer>
+                      <DrawerTrigger asChild>
+                        <Button className="bg-transparent text-black gap-2 p-2 hover:bg-transparent">
+                          <SquarePlus className="stroke-black" />
+                          Добавить список
+                        </Button>
+                      </DrawerTrigger>
+                      <DrawerContent className="h-[50vh] px-12">
+                        <div className="flex flex-row items-center gap-[16px] h-full justify-center max-[764px]:flex-col max-[764px]:w-full">
+                          <div className="flex gap-[16px] flex-col max-[764px]:w-full max-[764px]:gap-[8px]">
+                            <Label
+                              htmlFor="familyName"
+                              className="text-[14px] font-medium"
+                            >
+                              Название вашего списка
+                            </Label>
+                            <Input
+                              id="familyName"
+                              placeholder="Название списка"
+                              type="text"
+                              className="text-[16px] font-regular leading-6"
+                            ></Input>
+                            <Label
+                              htmlFor="listLink"
+                              className="text-[14px] font-medium"
+                            >
+                              Ссылка
+                            </Label>
+                            <Input
+                              id="listLink"
+                              placeholder="Ссылка"
+                              type="text"
+                              className="text-[16px] font-regular leading-6"
+                            ></Input>
+                          </div>
+                          <Button className="px-2 py-2 bg-[#FF783C] text-[14px] font-medium leading-[24px] max-[764px]:w-full">
+                            Продолжить
+                          </Button>
+                        </div>
+                      </DrawerContent>
+                    </Drawer>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem className="">
+                    <Button onClick={() => handleClick()} className="bg-red-500 w-full justify-start">
+                      <LogOut className="stroke-white" />
+                      <p
+                        className="text-white font-medium flex flex-row items-center gap-2 w-100"
+                      >
+                        Выйти
+                      </p>
+                    </Button>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link
               className="text-white text-[16px] font-medium bg-[#ff7435] rounded-full px-[30px] py-4 "
               href="/lists/"

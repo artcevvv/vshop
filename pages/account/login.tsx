@@ -20,6 +20,7 @@ export default function LoginPage() {
   const submitHandler = (e: { preventDefault: () => void }) => {
   	e.preventDefault();
   	login({username, password1})
+    
   }
 
   

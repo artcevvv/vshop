@@ -10,7 +10,7 @@ export default function createFamilyPage() {
     const [error, setError] = useState(null)
     const createList = async (listData:any) => {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/api/models/productlists/`, {
+          const response = await fetch(`${process.env.API_URL}/api/models/productlists/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
