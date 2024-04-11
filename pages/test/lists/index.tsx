@@ -3,7 +3,7 @@ import { useAuth } from '@/context/AuthentificationContext';
 import axios from 'axios';
 
 export default function Lists() {
-  const url = 'http://${process.env.API_URL}/api/models/user-product-lists/';
+  const url = 'http://http://crvik.c-m.tech:4444/api/models/user-product-lists/';
   const [lists, setLists] = useState([]);
   const { accessToken } = useAuth();
 

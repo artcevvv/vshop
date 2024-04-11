@@ -3,6 +3,8 @@ import React, { FormEvent, useState } from "react";
 import { ChevronLeft, SquarePlus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Card from '@/components/list/Card'
+import axios from "axios";
 import {
   Drawer,
   DrawerContent,
@@ -11,9 +13,9 @@ import {
 import { randomUUID } from "crypto";
 import { useRouter } from "next/router";
 import { useAuth } from "@/context/AuthentificationContext";
-
+import { useEffect } from "react";
 export default function FamilyCreation() {
-  
+
 
   const { user } = useAuth()
   const router = useRouter()
@@ -23,7 +25,7 @@ export default function FamilyCreation() {
   const createList = async (listData: any) => {
 
     try {
-      const response = await fetch(`http://crvik.c-m.tech:4444api/models/productlists/`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/models/productlists/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,19 +50,52 @@ export default function FamilyCreation() {
   };
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    
+
     const formData = new FormData(event.currentTarget)
     const listName = formData.get('name')
     const listUid = formData.get('uid')
-    
-    await createList({name: listName, uid: listUid})
+
+    await createList({ name: listName, uid: listUid })
     // const data = await response.json()
   }
-  return (
+
+
+  const [lists, setLists] = useState([]);
+  const { accessToken } = useAuth();
+
+  useEffect(() => {
+    const url = 'http://127.0.0.1:8000/api/models/user-product-lists/';
+    if (accessToken) {
+      axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            setLists(response.data);
+          }
+        })
+        .catch(error => {
+          console.error('There was a problem with your fetch operation:', error);
+        });
+    }
+  }, [accessToken]);
+
+  console.log(lists);
+  if (lists) {
+    return (
+      <div className='flex gap-[30px] max-w-[1420px] md:overflow-x-scroll flex-col md:flex-row'>
+        {lists?.map((plist) => (
+          <Card key={plist.id} name={plist.name} />
+        ))}
+      </div>
+    )
+  } else {
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       {/* <div className="flex flex-col border-solid border-[#DADADA] border-[1px] rounded-[64px] bg-transparent justify-center items-center w-[100%] max-[764px]:h-[50vh]"> */}
       <DrawerTrigger asChild >
-        <Button onClick={() => setIsOpen(true)}  className="h-full self-center border-solid border-[#DADADA] border-[1px] rounded-[64px] bg-transparent flex justify-center items-center w-[100%] py-48 hover:bg-transparent hover:shadow-lg">
+        <Button onClick={() => setIsOpen(true)} className="h-full self-center border-solid border-[#DADADA] border-[1px] rounded-[64px] bg-transparent flex justify-center items-center w-[100%] py-48 hover:bg-transparent hover:shadow-lg">
           <SquarePlus className="stroke-black stroke-1 h-16 w-16" />
         </Button>
       </DrawerTrigger>
@@ -92,15 +127,14 @@ export default function FamilyCreation() {
                 className="text-[16px] font-regular leading-6"
               ></Input>
             </div>
-          <Button onClick={() => setIsOpen(false)} type="submit" className="px-2 py-2 bg-[#FF783C] text-[14px] font-medium leading-[24px] max-[764px]:w-full">
-            Продолжить
-          </Button>
+            <Button onClick={() => setIsOpen(false)} type="submit" className="px-2 py-2 bg-[#FF783C] text-[14px] font-medium leading-[24px] max-[764px]:w-full">
+              Продолжить
+            </Button>
           </form>
         </div>
 
 
       </DrawerContent>
-      {/* </div> */}
     </Drawer>
-  );
+  }
 }
