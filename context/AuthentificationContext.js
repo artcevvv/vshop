@@ -8,9 +8,10 @@ const AuthenticationContext = createContext();
 export const AuthenticationProvider = ({ children }) => {
   useEffect(() => {
     const user = localStorage.getItem('user')
-    const accessToken = localStorage.getItem('accessToken')
+    const accessToken = localStorage.getItem('accessToken').replace(/"/g, "").replace(/(\r\n|\n|\r)/gm, "");
     setUser(JSON.parse(user))
     setAccessToken(accessToken)
+    console.log(accessToken)
   }, [])
   const [user, setUser] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
@@ -33,7 +34,7 @@ export const AuthenticationProvider = ({ children }) => {
 
     try {
       const { data: accessResponse } = await axios.post(
-        "http://crvik.c-m.tech:4444/api/auth/login/",
+        `http://127.0.0.1:8000/api/auth/login/`,
         body,
         config
       );
@@ -81,7 +82,7 @@ export const AuthenticationProvider = ({ children }) => {
 
     try {
       axios.post(
-        "http://crvik.c-m.tech:4444/api/auth/register/",
+        `http://127.0.0.1:8000/api/auth/register/`,
         body,
         config
       );
@@ -106,7 +107,7 @@ export const AuthenticationProvider = ({ children }) => {
   const logout = async () => {
     try {
       // remove the http only cookie
-      await axios.post("http://crvik.c-m.tech:4444/api/logout");
+      await axios.post(`http://127.0.0.1:8000/api/api/logout`);
 
       // remove the access token and the user from the state
       setUser(null);

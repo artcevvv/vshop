@@ -8,35 +8,35 @@ export default function createFamilyPage() {
     const router = useRouter()
     console.log(user);
     const [error, setError] = useState(null)
-    const createFamily = async (familyData:any) => {
+    const createList = async (listData:any) => {
         try {
-          const response = await fetch('http://crvik.c-m.tech:4444/api/models/families/', {
+          const response = await fetch(`http://127.0.0.1:8000/api/models/productlists/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              name: familyData.name,
-              owner: familyData.user.pk,
-              uid: randomUUID
+              name: listData.name,
+              uid: listData.uid,
+              owner: listData.user.pk,
             }),
           });
           
           const data = await response.json();
           if (!response.ok) {
-            setError(data['owner'])
+            setError('Ошибка!')
           }
-          router.push('/test/family/')
+          router.push('/test/lists/')
           return data;
-        } catch (error) {
+        } catch (error:any) {
             console.error(error.message);
-            router.push('/test/family/')
+            router.push('/test/lists/')
         }
       };
   return (
     <div className="">
 
-    <button onClick={()=>createFamily({name: 'TestFamq', user: user})}>Create</button>
+    <button onClick={()=>createList({name: 'Семья', user: user, uid: '' })}>Create</button>
     <p className='text-red-500'>{error}</p>
     </div>
   )
