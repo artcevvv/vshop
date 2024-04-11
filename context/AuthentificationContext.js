@@ -6,10 +6,9 @@ export const useAuth = () => useContext(AuthenticationContext)
 const AuthenticationContext = createContext();
 
 export const AuthenticationProvider = ({ children }) => {
-	useEffect(()=>{
-		use(localStorage.get('user'))
-
-	})
+	// useEffect(()=>{
+	// 	us(localStorage.get('user'))
+	// })
   const [user, setUser] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
   const [error, setError] = useState(null);
