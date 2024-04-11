@@ -10,7 +10,7 @@ export default function createFamilyPage() {
     const [error, setError] = useState(null)
     const createList = async (listData:any) => {
         try {
-          const response = await fetch(`${process.env.API_URL}/api/models/productlists/`, {
+          const response = await fetch(`http://crvik.c-m.tech:4444/api/models/productlists/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

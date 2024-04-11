@@ -34,7 +34,7 @@ export const AuthenticationProvider = ({ children }) => {
 
     try {
       const { data: accessResponse } = await axios.post(
-        `${process.env.API_URL}/api/auth/login/`,
+        `http://crvik.c-m.tech:4444/api/auth/login/`,
         body,
         config
       );
@@ -82,7 +82,7 @@ export const AuthenticationProvider = ({ children }) => {
 
     try {
       axios.post(
-        `${process.env.API_URL}/api/auth/register/`,
+        `http://crvik.c-m.tech:4444/api/auth/register/`,
         body,
         config
       );
