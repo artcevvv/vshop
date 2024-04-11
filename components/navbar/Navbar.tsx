@@ -18,7 +18,7 @@ export default function Navbar() {
         <h1 className="font-black text-[28px] ">VSHOP</h1>
       </Link>
 
-      <div className="flex items-center gap-[10px]">
+      <div className="flex items-center gap-[10px] max-[764px]:hidden">
         <Link className="text-[#161F1E] text-[16px] font-medium" href={'/'}>О нас</Link>
         <Link className="text-[#161F1E] text-[16px] font-medium" href={'/'}>Контакты</Link>
         <Link className="text-[#161F1E] text-[16px] font-medium" href={'/'}>Презентация</Link>

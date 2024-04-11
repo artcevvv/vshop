@@ -45,13 +45,13 @@ export default function RegisterPage() {
         
         // Redirect or perform any other action after successful login
         router.push('/account/login'); // Example redirect to dashboard
-      } catch (error) {
+      } catch (error:any) {
         console.log(error.message);
       }
     }
     
     return (
-    <div className="flex flex-col justify-center items-center p-[25px] border-solid border rounded-[64px] border-[#DADADA] gap-[30px] w-[65%]">
+    <div className="flex flex-col justify-center items-center p-[25px] border-solid border rounded-[64px] border-[#DADADA] gap-[30px] w-[65%] max-[764px]:w-full">
       <Image src={logo} width="50" height="50" alt="logo"></Image>
       <span className="text-[24px] font-semibold">Зарегистрироваться</span>
       <form onSubmit={submitHandler} className="w-[100%] flex flex-col gap-[16px]">
@@ -108,6 +108,6 @@ export default function RegisterPage() {
         </div>
       <Button type="submit" className="px-[16px] py-[8px] text-[16px] bg-[#FF7435] leading-[24px] font-medium">Зарегистрироваться</Button>
       </form>
-      <span className="text-[14px] text-[#00000048]">Уже использовали VSHOP? <Link href="/account/login" className="text-[#558FFF]">Войти</Link></span>
+      <span className="text-[14px] text-[#00000048] max-[764px]:text-[16px]">Уже использовали VSHOP? <Link href="/account/login" className="text-[#558FFF]">Войти</Link></span>
     </div>
   );};
