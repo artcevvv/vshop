@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Card({name,uid,owner}) {
   const { user, accessToken, error, login, register, logout } = useAuth();
   return (
-    <Link href={`/lists/${uid}`} className="md:w-[500px] h-full border-[1px] border-solid border-[#DADADA] rounded-[64px] bg-transparent hover:bg-[#E6E6E6] p-0 w-max">
+    <Link href={`/lists/${uid}`} className="md:w-[500px] h-full border-[1px] border-solid border-[#DADADA] rounded-[64px] bg-transparent hover:bg-[#E6E6E6] p-0 w-full">
       <div className="flex flex-col items-center gap-[50px] pt-6">
         <div className="flex flex-col items-center">
           <span className="text-black text-[40px] leading-[42px] font-bold">
@@ -78,7 +78,7 @@ export default function Card({name,uid,owner}) {
             fill="#D9D9D9"
           />
         </svg>
-        <div className="flex flex-col items-center justify-center w-[500px] bg-[#9c9c9c5e] h-[150px] rounded-b-[64px]">
+        <div className="flex flex-col items-center justify-center md:w-[500px] bg-[#9c9c9c5e] h-[150px] w-full rounded-b-[64px]">
           <span className="text-[14px] text-[#161F1E]">by {owner}</span>
           <span className="text-[14px] text-[#161F1E]">27.01.2005 15:23</span>
         </div>

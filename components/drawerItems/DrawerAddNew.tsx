@@ -31,7 +31,7 @@ export default function DrawerAddNew() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
       // Создаем новый продукт
@@ -86,25 +86,25 @@ export default function DrawerAddNew() {
         <Button className="mt-[16px] bg-[#FF7435] rounded-sm w-full md:w-[50%]">Добавить свой товар</Button>
     </DrawerTrigger>
     <DrawerContent className="h-[70vh]">
-        <div className="flex w-full items-center justify-center gap-[16px] h-full">
-            <div>
+    <div className="flex flex-row items-center gap-[16px] h-full justify-center max-[764px]:flex-col max-[764px]:w-full">
             <form onSubmit={handleSubmit}>
-            <label>
-              Name:
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+    <div className="flex gap-[16px] flex-col max-[764px]:w-full max-[764px]:gap-[8px]">
+            <label className="text-[14px] font-medium flex flex-col gap-[4px]">
+              Название товара:
+              <input className="border-[1px] border-solid border-[#E6E6E6] rounded-[4px] text-[16px] font-regular leading-6" type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </label>
-            <label>
-              Price:
-              <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+            <label  className="text-[14px] font-medium flex flex-col gap-[4px]">
+              Цена:
+              <input className="border-[1px] border-solid border-[#E6E6E6] rounded-[4px] text-[16px] font-regular leading-6" type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+            </label >
+            <label  className="text-[14px] font-medium flex flex-col gap-[4px]">
+              Количество:
+              <input className="border-[1px] border-solid border-[#E6E6E6] rounded-[4px] text-[16px] font-regular leading-6" type="number" value={count} onChange={(e) => setCount(e.target.value)} />
             </label>
-            <label>
-              Count:
-              <input type="number" value={count} onChange={(e) => setCount(e.target.value)} />
-            </label>
-            <button type="submit">Add Product</button>
-          </form>
-            </div>
+            <button type="submit" className="rounded-[16px] text-white px-2 py-2 bg-[#FF783C] text-[14px] font-medium leading-[24px] max-[764px]:w-full">Add Product</button>
         </div>
+          </form>
+          </div>
     </DrawerContent>
 </Drawer>
   )

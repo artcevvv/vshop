@@ -117,15 +117,15 @@ export default function Navbar() {
                 <DropdownMenuLabel>{user.username}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <Link
-                      href="/lists"
-                      className="text-black font-medium flex flex-row items-center gap-2 p-2"
-                    >
-                      <List className="stroke-black" /> Мои списки
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link
+                        href="/lists"
+                        className="text-black font-medium flex flex-row items-center gap-2 p-2"
+                      >
+                        <List className="stroke-black" /> Мои списки
+                      </Link>
+                    </DropdownMenuItem>
+                  {/* <DropdownMenuItem>
                     <Drawer open={isUp} onOpenChange={setIsUp}>
                       <DrawerTrigger asChild>
                         <Button onClick={()=>setIsUp(true)} className="bg-transparent text-black gap-2 p-2 hover:bg-transparent">
@@ -167,7 +167,7 @@ export default function Navbar() {
                         </div>
                       </DrawerContent>
                     </Drawer>
-                  </DropdownMenuItem>
+                  </DropdownMenuItem> */}
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
