@@ -87,7 +87,7 @@ export default function FamilyCreation() {
     return (
       <div className='flex gap-[30px] max-w-[1420px] md:overflow-x-scroll flex-col md:flex-row'>
         {lists?.map((plist) => (
-          <Card key={plist.id} name={plist.name} owner={plist.owner}/>
+          <Card key={plist.id} name={plist.name} owner={plist.owner} uid={plist.uid}/>
         ))}
       </div>
     )
