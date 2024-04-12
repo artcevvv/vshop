@@ -36,9 +36,9 @@ const TodoList = ({ products }) => {
               onChange={() => handleProductChange(index)}
             />
             <div className="w-full flex justify-between">
-              <span style={{ marginLeft: '8px' }}>{product.name}</span>
-              {product.quantity ? (
-                <span style={{ marginLeft: '8px' }}>Количество: {product.quantity}</span>
+              <span style={{ marginLeft: '8px' }}>{product.product.name}</span>
+              {product.count ? (
+                <span style={{ marginLeft: '8px' }}>Количество: {product.count}</span>
               ) : (
                 <span></span>
               ) }
