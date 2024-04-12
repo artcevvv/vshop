@@ -17,6 +17,8 @@ import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer";
 import { Label } from "../ui/label";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { createPortal } from "react-dom";
+
 export default function Navbar() {
   const { user, accessToken, error, login, register, logout } = useAuth();
   const [count, setCount] = useState(0)
@@ -26,6 +28,8 @@ export default function Navbar() {
     router.push('/account/login')
     setCount(2)
   }
+  const [isUp, setIsUp] = useState(false);
+  const [isClosable, setIsClosable] = useState(false);
   return (
     <div className="h-[90px] w-full rounded-full px-[20px] flex items-center justify-between bg-[#fafafa] border-2 border-[#dddddd]">
       <Link href={"/"} className="flex gap-[5px] items-center">
@@ -122,9 +126,9 @@ export default function Navbar() {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Drawer>
+                    <Drawer open={isUp} onOpenChange={setIsUp}>
                       <DrawerTrigger asChild>
-                        <Button className="bg-transparent text-black gap-2 p-2 hover:bg-transparent">
+                        <Button onClick={()=>setIsUp(true)} className="bg-transparent text-black gap-2 p-2 hover:bg-transparent">
                           <SquarePlus className="stroke-black" />
                           Добавить список
                         </Button>
@@ -157,7 +161,7 @@ export default function Navbar() {
                               className="text-[16px] font-regular leading-6"
                             ></Input>
                           </div>
-                          <Button className="px-2 py-2 bg-[#FF783C] text-[14px] font-medium leading-[24px] max-[764px]:w-full">
+                          <Button onClick={() => setIsUp(false)} className="px-2 py-2 bg-[#FF783C] text-[14px] font-medium leading-[24px] max-[764px]:w-full">
                             Продолжить
                           </Button>
                         </div>
