@@ -25,7 +25,7 @@ export default function FamilyCreation() {
   const createList = async (listData: any) => {
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/models/productlists/`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/models/productlists/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export default function FamilyCreation() {
   const { accessToken } = useAuth();
 
   useEffect(() => {
-    const url = 'http://127.0.0.1:8000/api/models/user-product-lists/';
+    const url = '${process.env.NEXT_PUBLIC_API_URL}/api/models/user-product-lists/';
     if (accessToken) {
       axios.get(url, {
         headers: {
