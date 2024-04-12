@@ -36,7 +36,7 @@ export const AuthenticationProvider = ({ children }) => {
 
     try {
       const { data: accessResponse } = await axios.post(
-        `http://127.0.0.1:8000/api/auth/login/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login/`,
         body,
         config
       );
@@ -84,7 +84,7 @@ export const AuthenticationProvider = ({ children }) => {
 
     try {
       axios.post(
-        `http://127.0.0.1:8000/api/auth/register/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register/`,
         body,
         config
       );
